@@ -19,16 +19,18 @@ searchButton.on('click', function(){
         .then(function(data){
             console.log(data);
             otherURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + data["coord"]["lat"] + "&lon=" + data["coord"]["lon"] + "&appid=" +  apiKey;
-            
+            fetch(otherURL)
+                .then(function(response){
+                    return response.json();
+                })
+                .then(function(data){
+                    console.log(data);
+                })
+    
+        
+        
         })
 
-    fetch(otherURL)
-        .then(function(response){
-            return response.json();
-        })
-        .then(function(data){
-            console.log(data);
-        })
-
+    
 })
 
