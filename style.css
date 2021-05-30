@@ -1,0 +1,44 @@
+body{
+    margin:0;
+    padding:0;
+}
+
+.header{
+    display: flex;
+    width: 100%;
+    background-color:lightblue;
+    font-size: 200%;
+    justify-content: center;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    color:blue;
+}
+
+.main-page{
+    width: 100%;
+    display:grid;
+    height: 100vh;
+    border: 2px solid blue;
+    grid-template-areas:
+        'SearchCity TodayWether TodayWether TodayWether TodayWether'
+        'SearchCity TodayWether TodayWether TodayWether TodayWether'
+        'SearchCity FutureWether FutureWether FutureWether FutureWether'
+        'SearchCity FutureWether FutureWether FutureWether FutureWether'
+        
+}
+
+.search{
+    grid-template-areas: SearchCity;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid red;
+}
+
+.CurrentWether{
+    grid-template-areas: TodayWether;
+    border: 2px solid orange;
+}
+
+.FutureWether{
+    grid-template-areas: FutureWether;
+    border: 2px solid pink;
+}
