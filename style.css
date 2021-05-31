@@ -16,7 +16,7 @@ body{
 .main-page{
     width: 100%;
     display:grid;
-    height: 100vh;
+    height: 600px;
     border: 2px solid blue;
     grid-template-areas:
         'SearchCity TodayWether TodayWether TodayWether TodayWether'
