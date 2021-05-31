@@ -9,6 +9,7 @@ let temp = $('<p>');
 let wind = $('<p>');
 let humidity = $('<p>');
 let uvi = $('<p>');
+let iconOfWether = $('<img>');
 
 const apiKey = "0ee3bf11765f2dbf4429370b2519d0e2";
 
@@ -35,6 +36,9 @@ function something(data){
 
     uvi.text("UV index: " + data["current"]["uvi"]);
     curentWetherSection.append(uvi);
+
+    iconOfWether.attr('src', 'https://openweathermap.org/img/w/' + data["weather"]["0"]["icon"] + '.png');
+    curentWetherSection.append(iconOfWether);
 
     
 }
