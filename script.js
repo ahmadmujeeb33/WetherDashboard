@@ -24,6 +24,8 @@ function something(data){
     curentWetherSection.append(cityTitle);
 
    
+    iconOfWether.attr('src', 'https://openweathermap.org/img/w/' + data["current"]["weather"]["0"]["icon"] + '.png');
+    curentWetherSection.append(iconOfWether);
 
     temp.text("Temp: " + data["current"]["temp"] + " deg");
     curentWetherSection.append(temp);
@@ -37,8 +39,8 @@ function something(data){
     uvi.text("UV index: " + data["current"]["uvi"]);
     curentWetherSection.append(uvi);
 
-    iconOfWether.attr('src', 'https://openweathermap.org/img/w/' + data["weather"]["0"]["icon"] + '.png');
-    curentWetherSection.append(iconOfWether);
+    
+    
 
     
 }
