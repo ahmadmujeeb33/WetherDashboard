@@ -7,6 +7,8 @@ let cityTitle = $('<h1>');
 
 let temp = $('<p>');
 let wind = $('<p>');
+let humidity = $('<p>');
+let uvi = $('<p>');
 
 const apiKey = "0ee3bf11765f2dbf4429370b2519d0e2";
 
@@ -20,13 +22,19 @@ function something(data){
     cityTitle.text(cityChosen.val() + " (" + currentDate + ")");
     curentWetherSection.append(cityTitle);
 
-    console.log(data["main"]["temp"]);
+   
 
-    temp.text("Wind: " + data["wind"]["speed"]);
+    temp.text("Temp: " + data["current"]["temp"] + " deg");
     curentWetherSection.append(temp);
 
-    wind.text("Temp: " + data["main"]["temp"] + " deg");
+    wind.text("Wind: " + data["current"]["wind_speed"]);
     curentWetherSection.append(wind);
+
+    humidity.text("Humidity " + data["current"]["humidity"] + " %");
+    curentWetherSection.append(humidity);
+
+    uvi.text("UV index: " + data["current"]["uvi"]);
+    curentWetherSection.append(uvi);
 
     
 }
@@ -42,14 +50,13 @@ searchButton.on('click', function(){
         })
 
         .then(function(data){
-            console.log(data);
-            something(data)
             otherURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + data["coord"]["lat"] + "&units=metric&lon=" + data["coord"]["lon"] + "&appid=" +  apiKey;
             fetch(otherURL)
                 .then(function(response){
                     return response.json();
                 })
                 .then(function(data1){
+                    something(data1)
                     console.log(data1);
                 })
     
