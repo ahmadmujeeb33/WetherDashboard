@@ -27,18 +27,24 @@ body{
 }
 
 .search{
-    grid-template-areas: SearchCity;
+    grid-area: SearchCity;
     display: flex;
     flex-direction: column;
     border: 2px solid red;
+    gap: 10px;
+}
+
+.search span{
+    display: flex;
+    justify-content: center;
 }
 
 .CurrentWether{
-    grid-template-areas: TodayWether;
+    grid-area: TodayWether;
     border: 2px solid orange;
 }
 
 .FutureWether{
-    grid-template-areas: FutureWether;
+    grid-area: FutureWether;
     border: 2px solid pink;
 }
