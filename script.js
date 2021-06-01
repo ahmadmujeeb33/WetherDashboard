@@ -5,11 +5,16 @@ let curentWetherSection = $(".CurrentWether")
 
 let cityTitle = $('<h1>');
 
+let futureDates = $('.futuredates');
+
+let futureWeather = $('.FutureWether');
+
 let temp = $('<p>');
 let wind = $('<p>');
 let humidity = $('<p>');
 let uvi = $('<p>');
 let iconOfWether = $('<img>');
+
 
 const apiKey = "0ee3bf11765f2dbf4429370b2519d0e2";
 
@@ -19,9 +24,42 @@ let otherURL;
 var today = moment();
 
 function futureWether(data){
+    console.log(data);
     for(let i=1;i<6;i++){
+
+        let info = $('<div>');
+        let futuretemp = $('<span>');
+        let futureWind = $('<span>');
+        let futureHumidity = $('<span>');
+        let futureicon = $('<img>')
+
+        let index = i-1;
+        console.log( "index " + index.toString());
+        futuretemp.text("Temp: " + data["daily"][index]["temp"]["day"]);
+        futureWind.text("Wind: " + data["daily"][index]["wind_speed"]);
+        futureHumidity.text("Humudity " + data["daily"][index]["humidity"]);
+        futureicon.attr('src', 'https://openweathermap.org/img/w/' + data["daily"][index]["weather"]["0"]["icon"] + '.png')
+
         let new_date = moment().add(i, 'days');
         let advancdedFate = new_date.toString().substring(4,15);
+        info.addClass('formatColumns');
+        info.append(advancdedFate);
+        info.append(futureicon);
+        info.append(futuretemp);
+        info.append(futureWind);
+        info.append(futureHumidity);
+        
+        
+
+        futureDates.append(info);
+
+        console.log("futuredates " + futureDates);
+
+        futureWeather.append(futureDates);
+
+
+
+
         console.log( "thissss " + advancdedFate);
     }
     
