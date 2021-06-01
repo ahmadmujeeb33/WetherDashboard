@@ -25,6 +25,8 @@ var today = moment();
 
 function futureWether(data){
     console.log(data);
+    futureWeather.empty();
+
     for(let i=1;i<6;i++){
 
         let info = $('<div>');
