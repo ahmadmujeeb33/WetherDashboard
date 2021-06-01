@@ -25,7 +25,7 @@ var today = moment();
 
 function futureWether(data){
     console.log(data);
-    futureWeather.empty();
+    futureDates.empty();
 
     for(let i=1;i<6;i++){
 
@@ -122,9 +122,10 @@ searchButton.on('click', function(){
         
         
         })
+    
+})
 
-        
-
+$(document).ready(function(){
     
 })
 
