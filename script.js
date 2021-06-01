@@ -16,9 +16,20 @@ const apiKey = "0ee3bf11765f2dbf4429370b2519d0e2";
 let queryURL;
 let otherURL;
 
+var today = moment();
+
+function futureWether(data){
+    for(let i=1;i<6;i++){
+        let new_date = moment().add(i, 'days');
+        let advancdedFate = new_date.toString().substring(4,15);
+        console.log( "thissss " + advancdedFate);
+    }
+    
+}
+
+
 function something(data){
     console.log(data);
-    var today = moment();
     let currentDate = today.format("MMM Do, YYYY");
     cityTitle.text(cityChosen.val() + " (" + currentDate + ")");
     curentWetherSection.append(cityTitle);
@@ -39,6 +50,7 @@ function something(data){
     uvi.text("UV index: " + data["current"]["uvi"]);
     curentWetherSection.append(uvi);
 
+    
     
     
 
@@ -63,6 +75,7 @@ searchButton.on('click', function(){
                 })
                 .then(function(data1){
                     something(data1)
+                    futureWether(data1);
                     console.log(data1);
                 })
     
