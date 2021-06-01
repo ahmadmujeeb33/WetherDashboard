@@ -15,6 +15,10 @@ let humidity = $('<p>');
 let uvi = $('<p>');
 let iconOfWether = $('<img>');
 
+let citiesSearched = [];
+
+let search = $('.search');
+
 
 const apiKey = "0ee3bf11765f2dbf4429370b2519d0e2";
 
@@ -98,6 +102,7 @@ function something(data){
 }
 
 searchButton.on('click', function(){
+    DisplayCities(cityChosen.val());
     console.log("this " + cityChosen.val());
     queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityChosen.val() + "&units=metric&appid=" + apiKey;
     
@@ -125,7 +130,18 @@ searchButton.on('click', function(){
     
 })
 
+function DisplayCities(city){
+    citiesSearched.push(city);
+
+    let placeForCity = $('<h3>');
+    placeForCity.text(city);
+    placeForCity.css('background-color', 'gray');
+    search.append(placeForCity);
+
+
+}
+
 $(document).ready(function(){
-    
+
 })
 
