@@ -17,7 +17,6 @@ body{
     width: 100%;
     display:grid;
     height: 700px;
-    border: 2px solid blue;
     grid-template-areas:
         'SearchCity TodayWether TodayWether TodayWether TodayWether'
         'SearchCity TodayWether TodayWether TodayWether TodayWether'
@@ -56,4 +55,13 @@ body{
 
 .futuredates{
     display: flex;
+
+}
+
+.formatColumns{
+    display: flex;
+    flex-direction: column;
+    background-color: #007bff;
+    
+    margin: 30px;
 }
