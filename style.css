@@ -16,7 +16,7 @@ body{
 .main-page{
     width: 100%;
     display:grid;
-    height: 600px;
+    height: 700px;
     border: 2px solid blue;
     grid-template-areas:
         'SearchCity TodayWether TodayWether TodayWether TodayWether'
@@ -42,9 +42,18 @@ body{
 .CurrentWether{
     grid-area: TodayWether;
     border: 2px solid orange;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .FutureWether{
     grid-area: FutureWether;
     border: 2px solid pink;
+    font-size: 180%;
+    
+}
+
+.futuredates{
+    display: flex;
 }
