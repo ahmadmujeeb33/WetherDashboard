@@ -9,6 +9,8 @@ let futureDates = $('.futuredates');
 
 let futureWeather = $('.FutureWether');
 
+let searchedItems = $('.searced-items')
+
 let temp = $('<p>');
 let wind = $('<p>');
 let humidity = $('<p>');
@@ -19,6 +21,7 @@ let citiesSearched = [];
 
 let search = $('.search');
 
+let infoOfCities = {};
 
 const apiKey = "0ee3bf11765f2dbf4429370b2519d0e2";
 
@@ -26,6 +29,8 @@ let queryURL;
 let otherURL;
 
 var today = moment();
+
+// localStorage.clear();
 
 function futureWether(data){
     console.log(data);
@@ -105,6 +110,19 @@ searchButton.on('click', function(){
     DisplayCities(cityChosen.val());
     console.log("this " + cityChosen.val());
     queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityChosen.val() + "&units=metric&appid=" + apiKey;
+    FindData();
+   
+    
+})
+
+search.on('click', '.searced-items',function(){
+    console.log($(this).text());
+    // queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + this.text() + "&units=metric&appid=" + apiKey;
+    // FindData();
+})
+
+function FindData(){
+    
     
 
     fetch(queryURL)
@@ -127,8 +145,8 @@ searchButton.on('click', function(){
         
         
         })
-    
-})
+
+}
 
 function DisplayCities(city){
     citiesSearched.push(city);
@@ -136,12 +154,32 @@ function DisplayCities(city){
     let placeForCity = $('<h3>');
     placeForCity.text(city);
     placeForCity.css('background-color', 'gray');
-    search.append(placeForCity);
+    searchedItems.append(placeForCity);
+
+    
+
+    if(localStorage.getItem('items') == null){
+        localStorage.setItem('items', JSON.stringify(citiesSearched));
+    }
+    else{
+        citiesSearched = JSON.parse(localStorage.getItem('items'));
+        citiesSearched.push(city)
+        localStorage.setItem('items',JSON.stringify(citiesSearched));
+    }
 
 
 }
 
 $(document).ready(function(){
+    if(localStorage.getItem('items') !==null){
+        let items = JSON.parse(localStorage.getItem('items'));
+        for(let i=0;i<items.length;i++){
+            let placeForCity = $('<h3>');
+            placeForCity.text(items[i]);
+            placeForCity.css('background-color', 'gray');
+            searchedItems.append(placeForCity);
+        }
+    }
 
 })
 
