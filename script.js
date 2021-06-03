@@ -30,7 +30,12 @@ let otherURL;
 
 var today = moment();
 
+let newCityname = "";
+
+let cityinsearchhistory = false;
+
 // localStorage.clear();
+let originalCitychosen = false;
 
 function futureWether(data){
     console.log(data);
@@ -80,7 +85,13 @@ function futureWether(data){
 function something(data){
     console.log(data);
     let currentDate = today.format("MMM Do, YYYY");
-    cityTitle.text(cityChosen.val() + " (" + currentDate + ")");
+    if(cityinsearchhistory){
+        cityTitle.text(newCityname + " (" + currentDate + ")");
+        cityinsearchhistory = false;
+    }
+    else{
+        cityTitle.text(cityChosen.val() + " (" + currentDate + ")");
+    }
     curentWetherSection.append(cityTitle);
 
    
@@ -115,11 +126,6 @@ searchButton.on('click', function(){
     
 })
 
-search.on('click', '.searced-items',function(){
-    console.log($(this).text());
-    // queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + this.text() + "&units=metric&appid=" + apiKey;
-    // FindData();
-})
 
 function FindData(){
     
@@ -156,6 +162,17 @@ function DisplayCities(city){
     placeForCity.css('background-color', 'gray');
     searchedItems.append(placeForCity);
 
+    placeForCity.on('click',function(){
+        cityinsearchhistory = true;
+        console.log($(this).text());
+        newCityname = $(this).text();
+        queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + $(this).text() + "&units=metric&appid=" + apiKey;
+        FindData();
+        // queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + this.text() + "&units=metric&appid=" + apiKey;
+        // FindData();
+    })
+    
+
     
 
     if(localStorage.getItem('items') == null){
@@ -171,6 +188,7 @@ function DisplayCities(city){
 }
 
 $(document).ready(function(){
+    
     if(localStorage.getItem('items') !==null){
         let items = JSON.parse(localStorage.getItem('items'));
         for(let i=0;i<items.length;i++){
@@ -180,6 +198,13 @@ $(document).ready(function(){
             searchedItems.append(placeForCity);
         }
     }
+
+    $(".searced-items h3").on("click", function(){
+        newCityname = $(this).text();
+        cityinsearchhistory = true;
+        queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + $(this).text() + "&units=metric&appid=" + apiKey;
+        FindData();
+    })
 
 })
 
